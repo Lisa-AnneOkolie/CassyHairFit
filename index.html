@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassy Hair Fit & More — Stronger Roots. Healthier Hair. Better You.</title>
+<meta name="description" content="Cassy Hair Fit & More — premium hair care crafted for stronger roots, healthier growth and lasting confidence. Shop the full routine today.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111111;
+  --ink-soft:#54524d;
+  --paper:#ffffff;
+  --paper-dim:#f6f5f2;
+  --paper-line:#efeeea;
+  --gold:#c9a24b;
+  --gold-deep:#a3803a;
+  --gold-pale:#f1e4bf;
+  --line:rgba(17,17,17,0.12);
+  --line-soft:rgba(17,17,17,0.08);
+  --shadow:0 20px 50px -25px rgba(17,17,17,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Jost',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  overflow-x:hidden;
+  font-weight:400;
+  line-height:1.65;
+}
+h1,h2,h3,h4,.display{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:600;
+  letter-spacing:0.01em;
+  color:var(--ink);
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+::selection{background:var(--gold-pale);}
+.eyebrow{
+  font-family:'Jost',sans-serif;
+  text-transform:uppercase;
+  letter-spacing:0.28em;
+  font-size:0.7rem;
+  font-weight:600;
+  color:var(--gold-deep);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-deep);display:inline-block;}
+.eyebrow.on-dark{color:var(--gold);}
+.eyebrow.on-dark::before{background:var(--gold);}
+.wrap{max-width:1220px;margin:0 auto;padding:0 32px;}
+@media(max-width:640px){.wrap{padding:0 20px;}}
+
+/* ===== Scroll Spine (signature element) ===== */
+.spine{
+  position:fixed;
+  left:18px;top:0;bottom:0;
+  width:26px;
+  z-index:60;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+.spine svg{height:100%;width:100%;}
+.spine .track{stroke:rgba(17,17,17,0.1);stroke-width:2;fill:none;}
+.spine .fill{stroke:url(#spineGrad);stroke-width:2;fill:none;stroke-dasharray:1;stroke-dashoffset:1;}
+@media(max-width:900px){.spine{display:none;}}
+
+/* ===== Nav ===== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  padding:22px 0;
+  background:transparent;
+  transition:background .4s ease, padding .4s ease, box-shadow .4s ease, border-color .4s ease;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(14px);
+  padding:14px 0;
+  border-bottom:1px solid var(--line-soft);
+}
+nav{display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{width:42px;height:42px;flex-shrink:0;border-radius:50%;}
+.logo-text{display:flex;flex-direction:column;line-height:1;}
+.logo-text .name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--ink);}
+.logo-text .tag{font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-soft);margin-top:3px;}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{font-size:0.85rem;letter-spacing:0.03em;color:var(--ink);position:relative;padding:4px 0;}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold-deep);transition:width .3s ease;}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  background:var(--ink);
+  color:var(--paper);
+  padding:12px 28px;
+  border-radius:999px;
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:0.03em;
+  box-shadow:0 10px 24px -12px rgba(17,17,17,0.4);
+  transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+}
+.nav-cta:hover{transform:translateY(-2px);background:var(--gold-deep);}
+.burger{display:none;width:26px;height:20px;position:relative;}
+.burger span{position:absolute;left:0;right:0;height:2px;background:var(--ink);border-radius:2px;transition:.3s;}
+.burger span:nth-child(1){top:0;}
+.burger span:nth-child(2){top:9px;}
+.burger span:nth-child(3){top:18px;}
+@media(max-width:860px){
+  .nav-links{position:fixed;top:0;right:0;height:100vh;width:min(320px,80vw);background:var(--ink);flex-direction:column;justify-content:center;gap:32px;transform:translateX(100%);transition:transform .45s ease;z-index:55;}
+  .nav-links.open{transform:translateX(0);}
+  .nav-links a{color:var(--paper);font-size:1.05rem;}
+  .nav-links a::after{background:var(--gold);}
+  .nav-links .nav-cta{color:var(--ink);background:var(--paper);}
+  .burger{display:block;z-index:56;}
+  .burger.open span:nth-child(1){transform:rotate(45deg) translate(6px,6px);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px);}
+}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative;
+  padding:180px 0 110px;
+  background:var(--paper);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;top:-10%;right:-8%;width:640px;height:640px;border-radius:50%;
+  background:radial-gradient(circle, rgba(17,17,17,0.035), transparent 70%);
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;align-items:center;position:relative;z-index:1;}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;}}
+.hero-copy h1{
+  font-size:clamp(2.6rem,5.4vw,4.3rem);
+  line-height:1.05;
+  color:var(--ink);
+  margin:22px 0 24px;
+}
+.hero-copy h1 em{font-style:italic;color:var(--gold-deep);}
+.hero-copy p{max-width:460px;color:var(--ink-soft);font-size:1.08rem;margin-bottom:36px;}
+.hero-actions{display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+.btn-primary{
+  background:var(--ink);
+  color:var(--paper);
+  padding:17px 38px;
+  border-radius:999px;
+  font-weight:600;
+  font-size:0.95rem;
+  letter-spacing:0.02em;
+  display:inline-flex;align-items:center;gap:10px;
+  box-shadow:0 16px 34px -16px rgba(17,17,17,0.45);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), background .35s ease;
+}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);background:var(--gold-deep);}
+.btn-ghost{
+  padding:17px 30px;border-radius:999px;font-size:0.95rem;font-weight:500;
+  border:1px solid var(--ink); color:var(--ink);
+  display:inline-flex;align-items:center;gap:8px;
+  transition:background .3s ease, border-color .3s ease;
+}
+.btn-ghost:hover{background:var(--paper-dim);border-color:var(--gold-deep);}
+.hero-stats{display:flex;gap:34px;margin-top:52px;}
+.hero-stats div{border-left:1px solid var(--line);padding-left:16px;}
+.hero-stats strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--ink);}
+.hero-stats span{font-size:0.76rem;color:var(--ink-soft);letter-spacing:0.02em;}
+
+.hero-visual{position:relative;height:520px;display:flex;align-items:center;justify-content:center;}
+.hero-card{
+  position:relative;z-index:2;
+  width:230px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:26px 20px 22px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  animation:bob 6s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+.hero-card .bottle{width:74px;height:120px;margin:0 auto 14px;}
+.hero-card h4{font-size:1.05rem;color:var(--ink);}
+.hero-card span{font-size:0.75rem;color:var(--gold-deep);letter-spacing:0.05em;}
+.hero-card-side{
+  position:absolute;width:150px;padding:16px;border-radius:18px;
+  background:var(--paper);border:1px solid var(--line);
+  box-shadow:0 14px 30px -18px rgba(17,17,17,0.25);
+  text-align:center;
+}
+.hero-card-side.a{top:2%;left:0;animation:bob 7s ease-in-out infinite; animation-delay:.4s;}
+.hero-card-side.b{bottom:0;right:-4%;animation:bob 7.5s ease-in-out infinite;animation-delay:1s;}
+.hero-card-side .bottle{width:46px;height:74px;margin:0 auto 8px;}
+.hero-card-side h5{font-size:0.8rem;color:var(--ink);font-family:'Jost';font-weight:600;}
+
+/* ===== Section basics ===== */
+section{padding:110px 0;}
+.section-head{max-width:640px;margin-bottom:60px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head h2{font-size:clamp(2rem,3.4vw,2.9rem);color:var(--ink);margin-top:16px;}
+.section-head p{color:var(--ink-soft);margin-top:16px;font-size:1.02rem;}
+
+/* ===== About ===== */
+.about{background:var(--ink);color:var(--paper);position:relative;}
+.about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;align-items:center;position:relative;z-index:1;}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:40px;}}
+.about-portrait{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:#000;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;}
+.about-portrait img{width:56%;border-radius:50%;}
+.about h2{color:var(--paper);}
+.about p{color:rgba(255,255,255,0.68);margin-top:20px;font-size:1.03rem;}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px;}
+.pillar{border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:20px;background:rgba(255,255,255,0.02);}
+.pillar h4{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:6px;}
+.pillar p{font-size:0.9rem;color:rgba(255,255,255,0.55);margin:0;}
+
+/* ===== Products ===== */
+.products{background:var(--paper);}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+@media(max-width:960px){.product-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.product-grid{grid-template-columns:1fr;}}
+.card{
+  background:var(--paper);
+  border-radius:20px;
+  padding:26px 24px 24px;
+  border:1px solid var(--line);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease, border-color .4s ease;
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -28px rgba(17,17,17,0.3);border-color:var(--gold-deep);}
+.card-media{height:190px;border-radius:14px;background:var(--paper-dim);display:flex;align-items:center;justify-content:center;margin-bottom:20px;position:relative;overflow:hidden;}
+.card-media .bottle{width:96px;height:150px;transition:transform .5s ease;}
+.card:hover .card-media .bottle{transform:translateY(-6px) scale(1.04);}
+.badge{position:absolute;top:12px;left:12px;background:var(--ink);color:var(--gold);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px;}
+.card h3{font-size:1.3rem;color:var(--ink);margin-bottom:6px;}
+.card .desc{font-size:0.9rem;color:var(--ink-soft);margin-bottom:16px;flex-grow:1;}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--paper-line);}
+.price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ink);}
+.price small{font-family:'Jost';font-size:0.68rem;color:var(--ink-soft);font-weight:400;text-transform:uppercase;letter-spacing:0.06em;}
+.size-select{
+  width:100%;padding:11px 14px;border-radius:8px;border:1px solid var(--line);
+  background:var(--paper);font-family:'Jost';font-size:0.85rem;color:var(--ink);margin-bottom:12px;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23111111'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+}
+.buy-btn{
+  width:100%;padding:13px;border-radius:10px;
+  background:var(--ink);
+  color:var(--paper);font-weight:600;font-size:0.9rem;letter-spacing:0.02em;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:transform .3s ease, background .3s ease;
+}
+.buy-btn:hover{transform:translateY(-2px);background:var(--gold-deep);}
+
+/* ===== How to use ===== */
+.how{background:var(--paper-dim);}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+@media(max-width:900px){.how-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.how-grid{grid-template-columns:1fr;}}
+.step-card{
+  background:var(--paper);border-radius:18px;padding:30px 22px;text-align:center;
+  border:1px solid var(--line);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.step-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -26px rgba(17,17,17,0.28);border-color:var(--gold-deep);}
+.step-icon{width:56px;height:56px;margin:0 auto 18px;border-radius:50%;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;}
+.step-icon svg{width:26px;height:26px;stroke:var(--ink);}
+.step-card h4{font-size:1.15rem;color:var(--ink);margin-bottom:8px;}
+.step-card p{font-size:0.87rem;color:var(--ink-soft);}
+.step-tag{font-size:0.64rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:10px;display:block;}
+
+/* ===== Why choose ===== */
+.why{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
+.why-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+@media(max-width:960px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.why-grid{grid-template-columns:1fr;}}
+.why .section-head h2{color:var(--paper);}
+.why .section-head p{color:rgba(255,255,255,0.6);}
+.benefit{padding:28px 20px;border-radius:16px;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.02);text-align:center;transition:background .35s ease, transform .35s ease, border-color .35s ease;}
+.benefit:hover{background:rgba(255,255,255,0.05);transform:translateY(-6px);border-color:var(--gold);}
+.benefit svg{width:30px;height:30px;stroke:var(--gold);margin-bottom:14px;}
+.benefit h4{font-family:'Cormorant Garamond',serif;font-size:1.18rem;color:var(--paper);margin-bottom:8px;}
+.benefit p{font-size:0.85rem;color:rgba(255,255,255,0.55);}
+
+/* ===== Testimonials ===== */
+.testi{background:var(--paper);}
+.testi-wrap{position:relative;max-width:760px;margin:0 auto;}
+.testi-track{overflow:hidden;border-radius:22px;}
+.testi-slides{display:flex;transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+.t-slide{min-width:100%;background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:46px 44px;text-align:center;box-shadow:var(--shadow);}
+.t-slide .stars{color:var(--gold);font-size:1.1rem;letter-spacing:3px;margin-bottom:18px;}
+.t-slide p{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--ink);line-height:1.5;}
+.t-slide .who{margin-top:22px;font-size:0.85rem;color:var(--ink-soft);letter-spacing:0.03em;font-weight:600;}
+.testi-nav{display:flex;justify-content:center;gap:14px;margin-top:28px;}
+.testi-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;transition:background .3s ease, border-color .3s ease;}
+.testi-nav button:hover{background:var(--paper-dim);border-color:var(--gold-deep);}
+.testi-dots{display:flex;justify-content:center;gap:8px;margin-top:20px;}
+.testi-dots span{width:7px;height:7px;border-radius:50%;background:var(--line);transition:.3s;}
+.testi-dots span.active{background:var(--gold-deep);width:22px;border-radius:6px;}
+
+/* ===== FAQ ===== */
+.faq{background:var(--paper-dim);}
+.faq-list{max-width:780px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:24px 4px;text-align:left;font-size:1.05rem;color:var(--ink);font-weight:500;}
+.faq-q .plus{width:22px;height:22px;position:relative;flex-shrink:0;}
+.faq-q .plus::before,.faq-q .plus::after{content:"";position:absolute;background:var(--ink);transition:transform .35s ease;}
+.faq-q .plus::before{left:0;top:50%;width:100%;height:2px;transform:translateY(-50%);}
+.faq-q .plus::after{top:0;left:50%;height:100%;width:2px;transform:translateX(-50%);}
+.faq-item.open .plus::after{transform:translateX(-50%) rotate(90deg);opacity:0;}
+.faq-item.open .faq-q{color:var(--gold-deep);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.faq-a p{padding:0 4px 24px;color:var(--ink-soft);font-size:0.95rem;max-width:640px;}
+
+/* ===== CTA ===== */
+.cta{
+  background:var(--ink);
+  color:var(--paper);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cta-inner{position:relative;z-index:1;}
+.cta h2{font-size:clamp(2.1rem,4vw,3.2rem);color:var(--paper);margin-bottom:18px;}
+.cta p{color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 38px;}
+.btn-cta{
+  background:var(--paper);
+  color:var(--ink);
+  padding:20px 50px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:1.05rem;
+  display:inline-flex;align-items:center;gap:12px;
+  box-shadow:0 20px 46px -18px rgba(0,0,0,0.6);
+  transition:transform .35s ease, background .35s ease, color .35s ease;
+}
+.btn-cta:hover{transform:translateY(-3px) scale(1.03);background:var(--gold);color:var(--ink);}
+
+/* ===== Footer ===== */
+footer{background:var(--ink);color:rgba(255,255,255,0.65);padding:80px 0 30px;border-top:1px solid rgba(255,255,255,0.08);}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr;gap:50px;margin-bottom:60px;}
+@media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr;}}
+footer h5{color:var(--gold);font-family:'Jost';font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:20px;}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.footer-logo img{width:34px;height:34px;border-radius:50%;}
+.footer-logo .name{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--paper);font-weight:700;}
+footer p{font-size:0.88rem;line-height:1.8;}
+.footer-links a{display:block;font-size:0.88rem;margin-bottom:12px;color:rgba(255,255,255,0.6);transition:color .25s ease;}
+.footer-links a:hover{color:var(--gold);}
+.socials{display:flex;gap:12px;margin-top:18px;}
+.socials a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;transition:background .3s ease,border-color .3s ease;}
+.socials a:hover{background:rgba(255,255,255,0.06);border-color:var(--gold);}
+.socials svg{width:16px;height:16px;stroke:var(--paper);}
+.foot-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.4);}
+
+/* Reveal-on-scroll */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- Signature scroll spine -->
+<div class="spine" aria-hidden="true">
+  <svg viewBox="0 0 40 1000" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="spineGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#c9a24b"/>
+        <stop offset="100%" stop-color="#111111"/>
+      </linearGradient>
+    </defs>
+    <path class="track" d="M20 0 C 30 150, 10 300, 20 450 S 30 700, 20 1000" pathLength="1"/>
+    <path id="spineFill" class="fill" d="M20 0 C 30 150, 10 300, 20 450 S 30 700, 20 1000" pathLength="1"/>
+  </svg>
+</div>
+
+<!-- ===== NAV ===== -->
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <div class="logo">
+        <img class="logo-mark" src="logo.png" alt="Cassy Hair Fit & More logo">
+        <div class="logo-text">
+          <span class="name">Cassy</span>
+          <span class="tag">hair_fit&amp;more</span>
+        </div>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#products">Products</a>
+        <a href="#how-to-use">How To Use</a>
+        <a href="#why">Why Us</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="#" data-whatsapp data-product="your hair care routine" data-size="">Shop Now</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Premium Hair Care Ritual</span>
+      <h1>Stronger roots.<br>Healthier hair.<br><em>Better you.</em></h1>
+      <p>Cassy blends nourishing botanicals with modern hair science to restore what damage and neglect take away — strength, shine, and the confidence to wear your hair exactly as it is.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary" data-whatsapp data-product="your hair care routine" data-size="">
+          Shop Now on WhatsApp
+        </a>
+        <a href="#products" class="btn-ghost">View Products</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>9</strong><span>Signature<br>Products</span></div>
+        <div><strong>100%</strong><span>Nourishing<br>Ingredients</span></div>
+        <div><strong>All</strong><span>Hair Types<br>Welcome</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-side a">
+        <svg class="bottle" viewBox="0 0 60 100"><rect x="18" y="8" width="24" height="12" rx="3" fill="#c9a24b"/><rect x="10" y="20" width="40" height="72" rx="10" fill="#fff" stroke="#111111" stroke-width="1.5"/></svg>
+        <h5>Booster Oil</h5>
+      </div>
+      <div class="hero-card">
+        <svg class="bottle" viewBox="0 0 60 100"><rect x="20" y="4" width="20" height="10" rx="2" fill="#c9a24b"/><rect x="12" y="14" width="36" height="82" rx="14" fill="#fff" stroke="#111111" stroke-width="1.5"/><rect x="20" y="34" width="20" height="26" rx="4" fill="#f6f5f2"/></svg>
+        <h4>Hair Booster Cream</h4>
+        <span>From ₦0,000</span>
+      </div>
+      <div class="hero-card-side b">
+        <svg class="bottle" viewBox="0 0 60 100"><ellipse cx="30" cy="14" rx="14" ry="8" fill="#c9a24b"/><path d="M14 18 C10 40 10 70 18 92 L42 92 C50 70 50 40 46 18 Z" fill="#fff" stroke="#111111" stroke-width="1.5"/></svg>
+        <h5>Rinse Conditioner</h5>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-portrait reveal">
+      <img src="logo.png" alt="Cassy Hair Fit & More crest">
+    </div>
+    <div class="reveal">
+      <span class="eyebrow on-dark">Our Story</span>
+      <h2>Crafted for crowns that deserve care</h2>
+      <p>Cassy Hair Fit &amp; More was born from a simple frustration: too many hair products promise results they can't deliver. We formulate every bottle around one goal — giving your roots what they actually need to grow stronger, retain moisture, and hold their shine, wash after wash.</p>
+      <p>Every product is made in small, quality-controlled batches, blending trusted natural actives with modern hair science, for textures of every kind.</p>
+      <div class="about-pillars">
+        <div class="pillar"><h4>Rooted in Science</h4><p>Formulas built around ingredients with proven results for growth and strength.</p></div>
+        <div class="pillar"><h4>Made With Intention</h4><p>Small batches, checked for quality, never rushed.</p></div>
+        <div class="pillar"><h4>For Every Crown</h4><p>Suitable across textures, porosities and hair goals.</p></div>
+        <div class="pillar"><h4>Real Confidence</h4><p>Healthy hair is the foundation — confidence is the result.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">The Collection</span>
+      <h2>Your complete hair care ritual</h2>
+      <p>Nine essentials, formulated to work together — from the first drop of oil at your roots to the final rinse. Prices are placeholders; update freely.</p>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- ===== HOW TO USE ===== -->
+<section class="how" id="how-to-use">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">The Ritual</span>
+      <h2>How to build your routine</h2>
+      <p>A simple order to follow so every product does its job — from cleansing to sealing in moisture.</p>
+    </div>
+    <div class="how-grid">
+      <div class="step-card reveal">
+        <span class="step-tag">Step One</span>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3c-3 3-6 6-6 10a6 6 0 0012 0c0-4-3-7-6-10z"/></svg></div>
+        <h4>Cleanse</h4>
+        <p>Massage the Shampoo into wet hair and scalp for 1–2 minutes, then rinse thoroughly to lift buildup without stripping moisture.</p>
+      </div>
+      <div class="step-card reveal">
+        <span class="step-tag">Step Two</span>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 12l-4-4M20 12l-4 4"/></svg></div>
+        <h4>Condition</h4>
+        <p>Apply the Rinse-Out Conditioner mid-length to ends, leave for 3–5 minutes, then rinse. Follow with the Hair Mask 1–2x weekly for deep repair.</p>
+      </div>
+      <div class="step-card reveal">
+        <span class="step-tag">Step Three</span>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 3"/></svg></div>
+        <h4>Nourish</h4>
+        <p>On damp hair, smooth in the Leave-in Conditioner, then work the Hair Booster Cream through length and ends to lock in moisture.</p>
+      </div>
+      <div class="step-card reveal">
+        <span class="step-tag">Step Four</span>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2v6M12 16v6M4.2 4.2l4.2 4.2M15.6 15.6l4.2 4.2M2 12h6M16 12h6M4.2 19.8l4.2-4.2M15.6 8.4l4.2-4.2"/></svg></div>
+        <h4>Stimulate & Protect</h4>
+        <p>Massage the Hair Booster Oil into your scalp daily or every other day. Finish with the Anti-Dandruff Spray as needed to keep your scalp balanced.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow on-dark">Why Cassy</span>
+      <h2>Made to work, made to last</h2>
+      <p>Every product is formulated with one purpose — visibly healthier hair, from root to tip.</p>
+    </div>
+    <div class="why-grid">
+      <div class="benefit reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2c-4 4-8 8-8 13a8 8 0 0016 0c0-5-4-9-8-13z"/></svg><h4>Promotes Growth</h4><p>Stimulates the scalp to encourage stronger, faster regrowth.</p></div>
+      <div class="benefit reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-9C1 8 3 4 7 4c2 0 4 1.5 5 3 1-1.5 3-3 5-3 4 0 6 4 4.5 8-2.5 4.65-9.5 9-9.5 9z"/></svg><h4>Reduces Breakage</h4><p>Strengthens strands so they resist snapping and shedding.</p></div>
+      <div class="benefit reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3c-3 3-6 6-6 10a6 6 0 0012 0c0-4-3-7-6-10z"/></svg><h4>Deep Moisture</h4><p>Locks in hydration to soften and revive dry, brittle hair.</p></div>
+      <div class="benefit reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg><h4>All Hair Types</h4><p>Formulated to work across textures, curl patterns and porosities.</p></div>
+      <div class="benefit reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg><h4>Quality Ingredients</h4><p>Trusted natural actives, carefully sourced and batch-checked.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testi" id="testimonials">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Loved By Many</span>
+      <h2>What our customers say</h2>
+    </div>
+    <div class="testi-wrap reveal">
+      <div class="testi-track">
+        <div class="testi-slides" id="testiSlides">
+          <div class="t-slide">
+            <div class="stars">★★★★★</div>
+            <p>"My edges have grown back after just two months of using the Booster Oil and Cream together. I finally feel confident wearing my hair out again."</p>
+            <div class="who">— Amaka O., Lagos</div>
+          </div>
+          <div class="t-slide">
+            <div class="stars">★★★★★</div>
+            <p>"The Hair Mask alone changed how my hair feels — soft, bouncy, and so much easier to detangle. Worth every naira."</p>
+            <div class="who">— Feyi A., Abuja</div>
+          </div>
+          <div class="t-slide">
+            <div class="stars">★★★★★</div>
+            <p>"I've tried countless products for my dandruff. The Anti-Dandruff Spray is the first one that's actually kept my scalp calm."</p>
+            <div class="who">— Chioma N., Port Harcourt</div>
+          </div>
+          <div class="t-slide">
+            <div class="stars">★★★★★</div>
+            <p>"Ordering through WhatsApp was so easy, and the Complete Set has genuinely transformed my hair routine. Customer service is excellent too."</p>
+            <div class="who">— Blessing U., Ibadan</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-nav">
+        <button id="testiPrev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button id="testiNext" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="testi-dots" id="testiDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q"><span>Is Cassy suitable for all hair types?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Yes. Our formulas are designed to work across textures, curl patterns and porosity levels — from relaxed to natural, fine to coarse.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>How long before I see results?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Most customers notice softer, stronger hair within 2–4 weeks of consistent use, with visible growth and reduced breakage by 8–12 weeks.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>How do I place an order?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Tap any "Buy" or "Order Now" button on this page — it opens WhatsApp with your selected product pre-filled so you can confirm details and complete payment directly with our team.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you offer nationwide delivery?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Yes, we deliver across Nigeria. Delivery timelines and fees are confirmed with our team when you place your order on WhatsApp.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What's the difference between the Complete and Half Set?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>The Complete Set includes the full nine-product routine, while the Half Set covers the essentials — oil, shampoo, and conditioner — ideal for first-time customers.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can I use these products alongside other treatments?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Generally yes, but we recommend messaging our team on WhatsApp with details of any chemical treatments so we can advise on the best routine for your hair.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta">
+  <div class="wrap cta-inner">
+    <span class="eyebrow on-dark">Ready When You Are</span>
+    <h2>Your healthiest hair<br>starts today</h2>
+    <p>Message us now on WhatsApp to place your order — our team will help you build the perfect routine for your hair goals.</p>
+    <a href="#" class="btn-cta" data-whatsapp data-product="your hair care routine" data-size="">
+      Order Now on WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="logo.png" alt="Cassy Hair Fit & More logo">
+          <span class="name">Cassy</span>
+        </div>
+        <p>Stronger roots. Healthier hair. Better you. Premium hair care crafted for every crown.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a>
+          <a href="#" data-whatsapp data-product="your hair care routine" data-size="" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 20l1.4-4.2A8 8 0 1112 20a8 8 0 01-4.5-1.4z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <div class="footer-links">
+          <a href="#products">Products</a>
+          <a href="#how-to-use">How To Use</a>
+          <a href="#why">Why Us</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <div class="footer-links">
+          <a href="#" data-whatsapp data-product="your hair care routine" data-size="">WhatsApp: 0808 685 0448</a>
+          <a href="mailto:hello@cassyhairfit.com">hello@cassyhairfit.com</a>
+          <a href="#">Lagos, Nigeria</a>
+        </div>
+      </div>
+      <div>
+        <h5>Business Hours</h5>
+        <p>Monday – Friday<br>9:00 AM – 7:00 PM</p>
+        <p style="margin-top:10px;">Saturday<br>10:00 AM – 5:00 PM</p>
+        <p style="margin-top:10px;">Sunday: Closed</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Cassy Hair Fit &amp; More. All rights reserved.</span>
+      <span>Placeholder prices &amp; images — update anytime.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ CONFIG ============ */
+const WHATSAPP_NUMBER = "2348086850448"; // 08086850448 in international format
+
+/* ============ PRODUCT DATA ============
+   Update prices, descriptions, images and sizes here — the whole UI rebuilds from this array. */
+const PRODUCTS = [
+  {
+    name: "Hair Booster Oil",
+    price: "₦0,000",
+    desc: "A stimulating scalp oil blended to awaken follicles, strengthen roots and encourage visible new growth.",
+    sizes: ["Small", "Medium", "Large"],
+    badge: "Bestseller",
+    shape: "oil"
+  },
+  {
+    name: "Hair Booster Cream",
+    price: "₦0,000",
+    desc: "A rich leave-in cream that seals moisture at the roots and supports the same growth-boosting routine as the oil.",
+    sizes: ["Medium", "Large"],
+    badge: "",
+    shape: "cream"
+  },
+  {
+    name: "Shampoo",
+    price: "₦0,000",
+    desc: "A gentle, sulfate-conscious cleanse that lifts buildup while protecting your hair's natural moisture balance.",
+    sizes: ["One Size"],
+    badge: "",
+    shape: "shampoo"
+  },
+  {
+    name: "Leave-in Conditioner",
+    price: "₦0,000",
+    desc: "Lightweight daily hydration that detangles, softens and shields hair from everyday breakage.",
+    sizes: ["One Size"],
+    badge: "",
+    shape: "leavein"
+  },
+  {
+    name: "Rinse-out Conditioner",
+    price: "₦0,000",
+    desc: "A deep-conditioning rinse that restores softness and manageability after every wash.",
+    sizes: ["One Size"],
+    badge: "",
+    shape: "rinseout"
+  },
+  {
+    name: "Hair Mask",
+    price: "₦0,000",
+    desc: "An intensive weekly treatment that repairs damaged strands and restores elasticity from within.",
+    sizes: ["One Size"],
+    badge: "Weekly Treat",
+    shape: "mask"
+  },
+  {
+    name: "Anti-Dandruff Spray",
+    price: "₦0,000",
+    desc: "A soothing scalp spray that calms irritation, controls flaking and keeps your scalp balanced.",
+    sizes: ["One Size"],
+    badge: "",
+    shape: "spray"
+  },
+  {
+    name: "Complete Hair Care Set",
+    price: "₦0,000",
+    desc: "The full nine-product Cassy routine — everything you need from root to tip, in one bundle.",
+    sizes: ["One Size"],
+    badge: "Best Value",
+    shape: "set"
+  },
+  {
+    name: "Half Hair Care Set",
+    price: "₦0,000",
+    desc: "The essentials bundle — oil, shampoo and conditioner — a perfect starting point for new customers.",
+    sizes: ["One Size"],
+    badge: "Starter",
+    shape: "sethalf"
+  }
+];
+
+/* ============ SVG bottle shapes — clean black-outline silhouettes with a small gold cap accent.
+   Swap card-media for a real <img> tag once product photography is ready. ============ */
+function bottleSVG(shape){
+  const stroke = `stroke="#111111" stroke-width="1.5"`;
+  switch(shape){
+    case "oil":
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="22" y="4" width="16" height="10" rx="2" fill="#c9a24b"/><rect x="14" y="14" width="32" height="80" rx="8" fill="#fff" ${stroke}/><rect x="20" y="30" width="20" height="50" rx="3" fill="#f6f5f2"/></svg>`;
+    case "cream":
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="10" y="18" width="40" height="70" rx="16" fill="#fff" ${stroke}/><ellipse cx="30" cy="18" rx="20" ry="8" fill="#fff" ${stroke}/><ellipse cx="30" cy="14" rx="15" ry="5" fill="#c9a24b"/></svg>`;
+    case "shampoo":
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="24" y="2" width="12" height="10" fill="#c9a24b"/><path d="M16 16 C 12 40 12 70 18 96 L42 96 C48 70 48 40 44 16 Z" fill="#fff" ${stroke}/></svg>`;
+    case "leavein":
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="24" y="2" width="12" height="12" rx="2" fill="#c9a24b"/><rect x="14" y="16" width="32" height="80" rx="10" fill="#fff" ${stroke}/><rect x="14" y="40" width="32" height="18" fill="#f6f5f2"/></svg>`;
+    case "rinseout":
+      return `<svg class="bottle" viewBox="0 0 60 100"><ellipse cx="30" cy="14" rx="14" ry="8" fill="#c9a24b"/><path d="M14 18 C10 40 10 70 18 92 L42 92 C50 70 50 40 46 18 Z" fill="#fff" ${stroke}/></svg>`;
+    case "mask":
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="8" y="24" width="44" height="66" rx="20" fill="#fff" ${stroke}/><ellipse cx="30" cy="24" rx="22" ry="10" fill="#fff" ${stroke}/><ellipse cx="30" cy="20" rx="16" ry="6" fill="#c9a24b"/></svg>`;
+    case "spray":
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="22" y="2" width="6" height="14" fill="#c9a24b"/><rect x="10" y="14" width="18" height="10" rx="3" fill="#fff" ${stroke}/><rect x="16" y="24" width="28" height="72" rx="10" fill="#fff" ${stroke}/></svg>`;
+    case "set":
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="6" y="30" width="20" height="64" rx="7" fill="#fff" ${stroke}/><rect x="30" y="18" width="22" height="76" rx="9" fill="#fff" ${stroke}/><rect x="30" y="10" width="22" height="10" rx="3" fill="#c9a24b"/></svg>`;
+    case "sethalf":
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="10" y="26" width="18" height="68" rx="6" fill="#fff" ${stroke}/><rect x="32" y="40" width="18" height="54" rx="6" fill="#fff" ${stroke}/><rect x="32" y="34" width="18" height="8" fill="#c9a24b"/></svg>`;
+    default:
+      return `<svg class="bottle" viewBox="0 0 60 100"><rect x="14" y="14" width="32" height="80" rx="8" fill="#fff" ${stroke}/></svg>`;
+  }
+}
+
+/* ============ Build product cards ============ */
+const grid = document.getElementById('productGrid');
+PRODUCTS.forEach((p, idx) => {
+  const card = document.createElement('div');
+  card.className = 'card reveal';
+  const hasSizes = !(p.sizes.length === 1 && p.sizes[0] === "One Size");
+  card.innerHTML = `
+    <div class="card-media">
+      ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+      ${bottleSVG(p.shape)}
+    </div>
+    <h3>${p.name}</h3>
+    <div class="price-row"><span class="price">${p.price} <small>placeholder</small></span></div>
+    <p class="desc">${p.desc}</p>
+    ${hasSizes ? `<select class="size-select" data-idx="${idx}">
+        ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
+      </select>` : `<input type="hidden" class="size-select" data-idx="${idx}" value="One Size">`}
+    <a href="#" class="buy-btn" data-idx="${idx}">
+      Buy on WhatsApp
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  `;
+  grid.appendChild(card);
+});
+
+/* ============ WhatsApp helpers ============ */
+function openWhatsApp(productName, size){
+  let msg = `Hello, I'm interested in purchasing the ${productName}`;
+  if(size && size !== "One Size"){ msg += ` (${size})`; }
+  msg += `. I'd like to place an order.`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+
+// Buy buttons on product cards
+grid.addEventListener('click', (e) => {
+  const btn = e.target.closest('.buy-btn');
+  if(!btn) return;
+  e.preventDefault();
+  const idx = btn.dataset.idx;
+  const select = grid.querySelector(`.size-select[data-idx="${idx}"]`);
+  const size = select ? select.value : "";
+  openWhatsApp(PRODUCTS[idx].name, size);
+});
+
+// Generic data-whatsapp elements (hero, cta, footer, nav)
+document.querySelectorAll('[data-whatsapp]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    openWhatsApp(el.dataset.product, el.dataset.size);
+  });
+});
+
+/* ============ Nav scroll + mobile menu ============ */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.classList.remove('open'); navLinks.classList.remove('open');
+}));
+
+/* ============ Scroll spine progress ============ */
+const spineFill = document.getElementById('spineFill');
+const spineLen = spineFill ? spineFill.getTotalLength() : 0;
+if(spineFill){ spineFill.style.strokeDasharray = spineLen; spineFill.style.strokeDashoffset = spineLen; }
+window.addEventListener('scroll', () => {
+  if(!spineFill) return;
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docH > 0 ? window.scrollY / docH : 0;
+  spineFill.style.strokeDashoffset = spineLen * (1 - pct);
+});
+
+/* ============ Reveal on scroll ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+/* ============ Testimonial carousel ============ */
+const slidesWrap = document.getElementById('testiSlides');
+const slides = slidesWrap.children;
+const dotsWrap = document.getElementById('testiDots');
+let current = 0;
+for(let i=0;i<slides.length;i++){
+  const dot = document.createElement('span');
+  if(i===0) dot.classList.add('active');
+  dot.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(dot);
+}
+function goTo(i){
+  current = (i + slides.length) % slides.length;
+  slidesWrap.style.transform = `translateX(-${current * 100}%)`;
+  [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === current));
+}
+document.getElementById('testiPrev').addEventListener('click', () => goTo(current - 1));
+document.getElementById('testiNext').addEventListener('click', () => goTo(current + 1));
+let autoSlide = setInterval(() => goTo(current + 1), 6000);
+document.querySelector('.testi-wrap').addEventListener('mouseenter', () => clearInterval(autoSlide));
+document.querySelector('.testi-wrap').addEventListener('mouseleave', () => { autoSlide = setInterval(() => goTo(current + 1), 6000); });
+
+/* ============ FAQ accordion ============ */
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o => { o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null; });
+    if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+  });
+});
+
+/* ============ Footer year ============ */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
